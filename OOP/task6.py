@@ -12,13 +12,13 @@
 # print(c1.method_called)  #1
 class Counter:
     count = 0
-    method_called = 0
 
     def __init__(self):
         Counter.count += 1
+        self.method_called = 0
 
     def get_count(self):
-        Counter.method_called += 1
+        self.method_called += 1
         return self.count
 
 
@@ -26,4 +26,6 @@ c1 = Counter()
 c2 = Counter()
 result = c1.get_count()
 result2 = c1.get_count()
+result3 = c2.get_count()
 print(c1.method_called)
+print(c2.method_called)
