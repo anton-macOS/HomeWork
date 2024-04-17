@@ -6,6 +6,8 @@
 # book2 = Book("Title2", "Author2")
 # print(book1 == book2)
 # print(book1 == book2)
+# Результат завантажте на гіт та відправте посилання
+# P.S. Спробуйте прибрати метод __ne__ та подивитись чи продовжить у вас працювати ваш код.
 class Book:
     def __init__(self, title, author):
         self.title = title
