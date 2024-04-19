@@ -1,3 +1,9 @@
+# Створіть простий контекстний менеджер FIleOpener, який буде відкривати файл,
+# повертати його та закривати при виході з контексту
+#
+# Приклад використання:
+# with FileOpener("file.txt", "r") as f:
+#     f.read()
 class FileOpener:
     def __init__(self, filename, mode):
         self.filename = filename
@@ -13,4 +19,3 @@ class FileOpener:
 
 with FileOpener("./Decorators and contextmanager/file.txt", "r") as f:
     f.read()
-    
