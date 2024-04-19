@@ -8,8 +8,8 @@
 import time
 
 
-def new_decorator(secs):
-    def sleeper(func):
+def sleeper(secs):
+    def new_decorator(func):
         def new_func(*args, **kwargs):
             print(f'Функція зʼявиться через {secs} секунд!')
             for sec in range(secs + 1):
@@ -18,10 +18,10 @@ def new_decorator(secs):
             print(func(*args, **kwargs))
 
         return new_func
-    return sleeper
+    return new_decorator
 
 
-@new_decorator(10)
+@sleeper(10)
 def some_func(a, b, c):
     return f'Результат: {a * b + c}'
 
