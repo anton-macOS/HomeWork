@@ -13,3 +13,4 @@ class FileOpener:
 
 with FileOpener("./Decorators and contextmanager/file.txt", "r") as f:
     f.read()
+    
