@@ -10,10 +10,11 @@
 #     code
 #     return ...
 def function_info(func):
-    def print_func(*args):
-        print(f'{func.__name__} is been called with parameters: {args}')
-        result = func(*args)
+    def print_func(*args, **kwargs):
+        print(f'{func.__name__} is been called with parameters: {args, kwargs}')
+        result = func(*args, **kwargs)
         print(f'Function {func.__name__} return this value: {result}')
+        return result
     return print_func
 
 
@@ -23,3 +24,4 @@ def some_func(a, b, c):
 
 
 some_func(1, 2, 3)
+

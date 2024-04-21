@@ -15,15 +15,16 @@ def sleeper(secs):
             for sec in range(secs + 1):
                 time.sleep(1)
                 print(secs - sec)
-            print(func(*args, **kwargs))
-
+            print(f'Результат: {func(*args, **kwargs)}')
+            return func(*args, **kwargs)
         return new_func
     return new_decorator
 
 
-@sleeper(10)
+@sleeper(5)
 def some_func(a, b, c):
-    return f'Результат: {a * b + c}'
+    return a * b + c
 
 
-some_func(1, 2, 3)
+res = some_func(1, 2, 3)
+print(res)

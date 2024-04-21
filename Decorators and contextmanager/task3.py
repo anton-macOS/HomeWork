@@ -12,18 +12,20 @@
 def called_decorator(func):
     def print_func(*args, **kwargs):
         print('Function is been called')
-        func(*args, **kwargs)
+        print(func(*args, **kwargs))
         print('Function is been called')
-
+        return func(*args, **kwargs)
     return print_func
 
 
 @called_decorator
 def new_inputs(a, b, c):
-    print(a * b + c)
+    return a * b + c
 
 
 new_inputs(1, 5, 5)
+
+
 
 
 
