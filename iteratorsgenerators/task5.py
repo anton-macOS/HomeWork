@@ -20,8 +20,9 @@ class CyclicIterator:
             print('Список пустий')
             raise StopIteration
         else:
+            if self.index >= len(self.info_list):
+                self.index = 0
             result = self.info_list[self.index]
-            self.info_list.append(result)
             self.index += 1
             return result
 

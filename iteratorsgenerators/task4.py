@@ -9,7 +9,7 @@
 class RangeIterator:
     def __init__(self, start, stop, step):
         self.start = start
-        self. end = stop
+        self.end = stop
         self.step = step
 
     def __iter__(self):

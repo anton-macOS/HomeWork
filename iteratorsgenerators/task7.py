@@ -26,16 +26,16 @@ class FilterIterator:
     def __next__(self):
         while self.index < len(self.info):
             value = self.info[self.index]
-            if self.rule(value):
-                print(value)
             self.index += 1
+            if self.rule(value):
+                return value
         raise StopIteration
 
 
 f_iter = FilterIterator([1, 2, 3, 4], lambda x: x % 2 == 0)
 while True:
     try:
-        next(f_iter)
+        print(next(f_iter))
     except StopIteration:
         break
 

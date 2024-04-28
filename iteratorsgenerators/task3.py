@@ -9,10 +9,15 @@
 # # [1, 3, 2]
 # # [2, 1, 3]
 # # ...
+import math as m
 
 def permutation(nums: list):
-    for i in range(len(nums)):
+    start = 0
+    for i in range(start, m.factorial(len(nums))):
+        nums[0], nums[i] = nums[i], nums[0]
         yield nums
+
+
 
 
 for i in permutation([1, 2, 3]):
