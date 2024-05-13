@@ -31,7 +31,7 @@ class BookInfo(ABC):
         self.author = author
         self.isbn = isbn
         self.copies = copies
-        Book._total_copies += self.copies
+        BookInfo._total_copies += self.copies
 
     @abstractmethod
     def check_availability(self):
