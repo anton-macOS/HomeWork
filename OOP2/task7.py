@@ -5,45 +5,60 @@
 # У кастомера повинні бути методи для отримання інфи про атрибути.
 # У BankAccount повинні бути методи поповнення та виведення коштів з усіма валідаціями,
 # а також метод для отримання account_number
-class Customer:
-    def __init__(self, name, email, customer_id):
-        self.__name = name
-        self.__email = email
-        self.__customer_id = customer_id
+from abc import ABC, abstractmethod
+
+
+class UserInfo(ABC):
+
+    def __init__(self, name, email, user_id):
+        self.name = name
+        self.email = email
+        self.user_id = user_id
+
+    @abstractmethod
+    def greetings(self):
+        pass
+
+
+class Customer(UserInfo):
+    def __init__(self, name, email, user_id):
+        super().__init__(name, email, user_id)
+
+    def greetings(self):
+        return f'Hello my name is {self.name}.'
 
     def get_customer_info(self):
-        return f'Name - {self.__name}, email - {self.__email}, customer ID - {self.__customer_id}'
+        return f'Name - {self.name}, email - {self.email}, customer ID - {self.user_id}'
 
 
 class BankAccount:
     def __init__(self, owner, account_number, balance=0):
-        self.__owner = owner
-        self.__account_number = account_number
+        self.owner = owner
+        self.account_number = account_number
         self.__balance = balance
 
     def get_balance(self):
         return f'Your balance is {self.__balance}'
 
     def withdraw(self, value):
-        if self.__balance == 0 or self.__balance - value < 0:
+        if self.__balance - value < 0:
             raise 'Not enought money! Deposit you balance'
-        else:
-            self.__balance -= value
-            return f'Withwraw - {value} completed'
+        self.__balance -= value
+        return f'Withwraw - {value} completed'
 
     def deposit(self, value):
         if value < 0:
             return 'Enter correct value'
-        else:
-            self.__balance += value
-            return 'Completed!'
+        self.__balance += value
+        return 'Completed!'
 
     def get_account_number(self):
-        return f'Your account number is {self.__account_number}'
+        return f'Your account number is {self.account_number}'
 
 
 anton = Customer('Anton', 'anton@gmail.com', 1)
-print(anton.get_customer_info())
+print(anton.greetings())
+# print(anton.get_customer_info())
 wallet = BankAccount('Anton', 1234567)
 print(wallet.get_balance())
 wallet.deposit(100)
