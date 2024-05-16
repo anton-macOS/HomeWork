@@ -20,6 +20,7 @@
 #
 # Важливо! Використовуйте все, атрибути класу, атрибути інстансу, клас методи та статик методи,
 # проперті, приватні та протектед атрибути.
+import re
 from abc import ABC, abstractmethod
 
 
@@ -60,15 +61,65 @@ class Book(BookInfo):
 
     @update_quantity.setter
     def update_quantity(self, value):
-        if value >= 1:
+        if self.copies + value >= 0:
             self.copies += value
+            Book.update_total_copies(value)
+        else:
+            raise 'Not enough books'
 
     @classmethod
     def update_total_copies(cls, value):
         cls._total_copies += value
 
+    @staticmethod
+    def validate_isbn(isbn):
+        result = r'^\d{1}-\d{3}-\d{5}-\d{1}$'
+        if re.fullmatch(result, isbn):
+            return True
+        else:
+            raise 'Incorrect ISBN'
 
-richard = Book('Richard', 'Gir', 101, 1)
+    def change_library_quantity(self, value):
+        self.copies = value
+
+
+class User:
+    def __init__(self, name, user_id):
+        self.name = name
+        self.user_id = user_id
+
+
+class Customer(User):
+    def __init__(self, name, user_id):
+        super().__init__(name, user_id)
+
+    def borrow_book(self, book,  value):
+        if book.check_availability() >= value:
+            book.update_quantity = -value
+        else:
+            raise 'Not enough books'
+
+    def return_book(self, book, value):
+        book.update_quantity = value
+
+
+richard = Book('Richard', 'Gir', '0-061-96436-0', 1)
 boom = Book('Boom', 'Gir', 101, 1)
-print(richard._total_copies)
+richard.change_library_quantity(10)
+print(richard.copies)
+richard.change_library_quantity(5)
+print(richard.copies)
+print(richard.validate_isbn('0-061-96436-0'))
+anton = Customer('Anton', 123)
+anton.borrow_book(richard, 2)
+print(richard.copies)
+anton.borrow_book(richard, 3)
+print(richard.copies)
+anton.return_book(richard, 1)
+print(richard.copies)
+
+
+
+
+
 
