@@ -48,6 +48,28 @@ class BookInfo(ABC):
         pass
 
 
+class CustomerInfo(ABC):
+    def borrow_book(self, book, value):
+        pass
+
+    def return_book(self, book, value):
+        pass
+
+    def get_borrowed_books(self):
+        pass
+
+
+class LibraryInfo(ABC):
+    def add_user(self, user):
+        pass
+
+    def find_book(self, isbn):
+        pass
+
+    def show_all_books(self):
+        pass
+
+
 class Book(BookInfo):
     def __init__(self, title, author, isbn, copies):
         super().__init__(title, author, isbn, copies)
@@ -82,25 +104,79 @@ class Book(BookInfo):
     def change_library_quantity(self, value):
         self.copies = value
 
+    def __repr__(self):
+        return f'Title: {self.title}, author: {self.author}, isbn: {self.isbn}, copies: {self.copies}'
+
+    def __str__(self):
+        return self.__repr__()
+
 
 class User:
     def __init__(self, name, user_id):
         self.name = name
         self.user_id = user_id
 
+    def __repr__(self):
+        return self.name
 
-class Customer(User):
+    def __str__(self):
+        return self.__repr__()
+
+
+class Customer(CustomerInfo, User):
+
     def __init__(self, name, user_id):
         super().__init__(name, user_id)
+        self.borrowed = {}
 
     def borrow_book(self, book,  value):
         if book.check_availability() >= value:
             book.update_quantity = -value
+            if book in self.borrowed:
+                self.borrowed[book] += value
+            else:
+                self.borrowed[book] = value
         else:
             raise 'Not enough books'
 
     def return_book(self, book, value):
         book.update_quantity = value
+        if book in self.borrowed:
+            self.borrowed[book] -= value
+            if self.borrowed[book] <= 0:
+                del self.borrowed[book]
+
+    def get_borrowed_books(self):
+        return self.borrowed
+
+
+class Library(LibraryInfo):
+    def __init__(self):
+        self.books = {}
+        self. users = {}
+
+    def add_user(self, user):
+        if user.user_id in self.users:
+            raise 'User already in dict'
+        self.users[user.user_id] = user
+
+    def add_book(self, book):
+        if book.isbn in self.books:
+            raise 'Book already in dict'
+        self.books[book.isbn] = book
+
+    def find_book(self, isbn):
+        if isbn in self.books:
+            result = self.books[isbn]
+            return result
+        else:
+            return 'Cant find book'
+
+    def show_all_users(self):
+        return self.users
+
+    def show_all_books(self):
+        return self.books
 
 
 richard = Book('Richard', 'Gir', '0-061-96436-0', 1)
@@ -111,15 +187,22 @@ richard.change_library_quantity(5)
 print(richard.copies)
 print(richard.validate_isbn('0-061-96436-0'))
 anton = Customer('Anton', 123)
+vlad = Customer('Vlad', 321)
 anton.borrow_book(richard, 2)
 print(richard.copies)
 anton.borrow_book(richard, 3)
 print(richard.copies)
 anton.return_book(richard, 1)
 print(richard.copies)
-
-
-
-
-
-
+print(anton.get_borrowed_books())
+anton.borrow_book(boom, 1)
+anton.return_book(boom, 1)
+print(anton.get_borrowed_books())
+print(vlad.get_borrowed_books())
+new_lab = Library()
+new_lab.add_user(User('Anton', 123))
+new_lab.add_user(User('Renat', 124))
+print(new_lab.show_all_users())
+new_lab.add_book(Book('Ineresting Book', 'Vlad', '0-161-96436-5', 5))
+print(new_lab.show_all_books())
+print(new_lab.find_book('0-161-96436-5'))
