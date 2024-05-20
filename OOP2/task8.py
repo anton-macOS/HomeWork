@@ -204,5 +204,7 @@ new_lab.add_user(User('Anton', 123))
 new_lab.add_user(User('Renat', 124))
 print(new_lab.show_all_users())
 new_lab.add_book(Book('Ineresting Book', 'Vlad', '0-161-96436-5', 5))
+new_lab.add_book(Book('Not interesting Book', 'Anton', '0-161-96436-3', 10))
+
 print(new_lab.show_all_books())
 print(new_lab.find_book('0-161-96436-5'))
