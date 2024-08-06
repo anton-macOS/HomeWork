@@ -1,0 +1,140 @@
+@import url(https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700&family=Roboto:wght@100;300;400;500;700;900&display=swap);
+
+a {
+    color: inherit;
+    font-weight: bold;
+    text-decoration: none;
+}
+ .body-main {
+    font-style: Roboto, san-serif;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+section {
+    margin: 40px 140px;
+    min-width: 300px;
+    max-width: 1200px;
+    border: 1px solid #ddd;
+}
+  .header-main {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px;
+    background-color: #eee;
+
+  }
+
+  .nav-list {
+    display: flex;
+    list-style-type: none;
+    gap: 20px;
+  }
+  
+  .nav-link {
+    color: black;
+  }
+  
+  .nav-link:hover {
+    color: red;
+  }
+  
+  .main-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    padding: 20px;
+  }
+  .title {
+    text-align: left;
+
+  }
+  .site-name {
+    display: block;
+  }
+
+  article{
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    width: 100%;
+    height: 200px;
+  }
+  
+  .reviews-ol {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    max-width: 1200px;
+    padding: 0;
+    margin: 20px;
+  }
+  
+  .review-item {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd;
+    list-style-type: none;
+  }
+
+  
+  .review-text {
+    color: #767676;
+    margin-top: 10px;
+  }
+  
+  .ad-section {
+    position: fixed;
+    text-align: left;
+    right: 20px;
+    bottom: 20px;
+    padding: 10px;
+    max-width: 200px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .ad-title {
+    font-size: 20pxs;
+  }
+  
+  .ad-text {
+    margin-top: 10px;
+  }
+  
+  .email-label {
+    padding-bottom: 5px;
+  }
+  
+  .email-input {
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .subscribe-button {
+    background-color: blue;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .subscribe-button:hover {
+    background-color: darkblue;
+  }
+  
+  .footer-main {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+    background-color: #eee;
+  }
+  
+  .footer-text {
+    font-size: 12px;
+  }
