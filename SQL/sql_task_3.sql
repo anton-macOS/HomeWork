@@ -80,12 +80,19 @@ VALUES (2, 3, '2024-07-13');
 INSERT INTO product_suppliers (product_id, supplier_id, supply_date)
 VALUES (1, 3, '2024-07-13');
 
--- HOMEWORK
-SELECT * FROM products;
-SELECT email FROM customers WHERE email LIKE '%@gmail.com';
-SELECT SUM(quantity) FROM orders;
-SELECT COUNT(quantity) FROM orders WHERE customer_id = '4';
-SELECT name FROM products WHERE price BETWEEN 10 AND 100;
+-- Homework
+
+
+SELECT * FROM products WHERE price > 500;
+SELECT * FROM orders WHERE order_date < '2024-01-01';
+SELECT * FROM orders WHERE quantity > 1;
+SELECT * FROM suppliers WHERE contact_name = 'Vlad Ushakov';
+
+
+
+
+
+
 
 
 
